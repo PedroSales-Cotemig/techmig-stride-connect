@@ -18,8 +18,12 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-2xl font-bold text-primary">
-            TECHMIG
+          <div>
+            <img 
+              src="/lovable-uploads/977ca011-a060-447d-a52b-594a19290765.png" 
+              alt="TECHMIG" 
+              className="h-10 w-auto"
+            />
           </div>
 
           {/* Desktop Navigation */}
