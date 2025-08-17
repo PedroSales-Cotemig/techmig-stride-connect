@@ -14,7 +14,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="text-3xl font-bold mb-4">TECHMIG</div>
+            <img 
+              src="/lovable-uploads/977ca011-a060-447d-a52b-594a19290765.png" 
+              alt="TECHMIG" 
+              className="h-12 w-auto mb-4"
+            />
             <p className="text-white/80 mb-6 leading-relaxed max-w-md">
               Especialistas em soluções tecnológicas corporativas. Transformamos 
               infraestruturas em motores de produtividade com workstations personalizadas, 
