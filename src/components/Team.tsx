@@ -1,5 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-import teamPhoto from "@/assets/team-photo.jpg";
 import { LinkedinIcon, MailIcon } from "lucide-react";
 
 const Team = () => {
@@ -68,30 +67,13 @@ const Team = () => {
           </p>
         </div>
 
-        {/* Team Photo */}
-        <div className="relative mb-16 animate-slide-up">
-          <div className="relative overflow-hidden rounded-2xl shadow-tech max-w-4xl mx-auto">
-            <img 
-              src={teamPhoto} 
-              alt="Equipe técnica da Techmig"
-              className="w-full h-[400px] object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
-            
-            {/* Overlay content */}
-            <div className="absolute bottom-8 left-8 text-white">
-              <h3 className="text-2xl font-bold mb-2">Equipe Techmig</h3>
-              <p className="text-lg opacity-90">Especialistas em tecnologia corporativa</p>
-            </div>
-          </div>
-        </div>
-
         {/* Team Members Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-6">
           {teamMembers.map((member, index) => (
             <Card 
               key={index}
-              className="group text-center hover:shadow-tech transition-all duration-300 hover:-translate-y-2 border-0 shadow-card animate-slide-up"
+              className="group text-center hover:shadow-tech transition-all duration-300 hover:-translate-y-2 border-0 shadow-card animate-slide-up w-72"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardContent className="p-8">
@@ -158,6 +140,7 @@ const Team = () => {
             <div className="text-lg font-semibold mb-2">Anos</div>
             <div className="text-muted-foreground text-sm">Experiência média</div>
           </div>
+        </div>
         </div>
       </div>
     </section>
