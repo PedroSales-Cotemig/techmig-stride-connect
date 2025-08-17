@@ -5,32 +5,53 @@ import { LinkedinIcon, MailIcon } from "lucide-react";
 const Team = () => {
   const teamMembers = [
     {
-      name: "Carlos Silva",
-      role: "Diretor Técnico",
+      name: "Enzo Costa",
+      role: "CEO",
       experience: "15+ anos",
-      expertise: "Infraestrutura de Redes",
-      description: "Especialista em soluções corporativas complexas"
+      expertise: "Liderança Estratégica",
+      description: "Visionário e estrategista corporativo"
     },
     {
-      name: "Ana Santos",
-      role: "Gerente de Projetos",
+      name: "Pedro Sales",
+      role: "TI Manager",
       experience: "12+ anos",
       expertise: "Gestão de TI",
-      description: "Focada em resultados e satisfação do cliente"
+      description: "Especialista em infraestrutura tecnológica"
     },
     {
-      name: "Roberto Lima",
-      role: "Técnico Senior",
-      experience: "10+ anos",
-      expertise: "Sistemas CFTV",
-      description: "Expert em segurança e monitoramento"
-    },
-    {
-      name: "Marina Costa",
-      role: "Especialista em Hardware",
+      name: "Samuel Salatiel",
+      role: "Gestor de Comunicação",
       experience: "8+ anos",
-      expertise: "Workstations",
-      description: "Configurações otimizadas para alta performance"
+      expertise: "Marketing Digital",
+      description: "Expert em comunicação corporativa"
+    },
+    {
+      name: "Lucas Irineu",
+      role: "Desenvolvedor de Projetos",
+      experience: "10+ anos",
+      expertise: "Desenvolvimento",
+      description: "Focado em soluções inovadoras"
+    },
+    {
+      name: "Walmig",
+      role: "AI Manager",
+      experience: "6+ anos",
+      expertise: "Inteligência Artificial",
+      description: "Especialista em automação inteligente"
+    },
+    {
+      name: "Gustavo Dultra",
+      role: "Gestor de Estoque",
+      experience: "9+ anos",
+      expertise: "Logística",
+      description: "Otimização de recursos e materiais"
+    },
+    {
+      name: "Eduardo Leite",
+      role: "Chefe Administrativo",
+      experience: "11+ anos",
+      expertise: "Administração",
+      description: "Gestão administrativa e financeira"
     }
   ];
 
@@ -66,7 +87,7 @@ const Team = () => {
         </div>
 
         {/* Team Members Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {teamMembers.map((member, index) => (
             <Card 
               key={index}
