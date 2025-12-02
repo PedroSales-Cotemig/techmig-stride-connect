@@ -1,7 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Star, Award, Users } from "lucide-react";
+import AnimatedSection from "./AnimatedSection";
+import { useInView } from "@/hooks/useInView";
 
 const Differentials = () => {
+  const { ref: headerRef, isInView: headerInView } = useInView({ threshold: 0.2 });
+
   const differentials = [
     "Consultoria personalizada para cada projeto",
     "Equipe certificada e altamente qualificada",
@@ -32,7 +36,12 @@ const Differentials = () => {
   return (
     <section className="py-20 gradient-subtle">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ease-out ${
+            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Nossos <span className="text-primary">Diferenciais</span>
           </h2>
@@ -44,23 +53,85 @@ const Differentials = () => {
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Differentials List */}
-          <div className="space-y-6 animate-slide-up">
-            {differentials.map((differential, index) => (
-              <div 
-                key={index} 
-                className="flex items-center space-x-4 p-4 rounded-lg hover:bg-white/50 transition-colors"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex-shrink-0">
-                  <CheckCircle className="w-6 h-6 text-primary" />
-                </div>
-                <span className="text-lg text-foreground font-medium">
-                  {differential}
-                </span>
-              </div>
-            ))}
+          <AnimatedSection animation="slide-left" duration={700}>
+            <div className="space-y-4">
+              {differentials.map((differential, index) => (
+                <AnimatedSection
+                  key={index}
+                  animation="fade-up"
+                  delay={index * 80}
+                  duration={500}
+                >
+                  <div className="flex items-center space-x-4 p-4 rounded-lg hover:bg-background/80 transition-all duration-300 group cursor-default">
+                    <div className="flex-shrink-0">
+                      <CheckCircle className="w-6 h-6 text-primary group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                    <span className="text-lg text-foreground font-medium group-hover:text-primary transition-colors duration-300">
+                      {differential}
+                    </span>
+                  </div>
+                </AnimatedSection>
+              ))}
 
-            <div className="pt-8">
+              <AnimatedSection animation="fade-up" delay={500} className="pt-8">
+                <button 
+                  onClick={() => {
+                    const element = document.getElementById('contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="gradient-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold shadow-button hover:opacity-90 hover:scale-105 transition-all duration-300"
+                >
+                  Descubra Como Podemos Ajudar
+                </button>
+              </AnimatedSection>
+            </div>
+          </AnimatedSection>
+
+          {/* Highlights Cards */}
+          <div className="space-y-6">
+            {highlights.map((highlight, index) => (
+              <AnimatedSection
+                key={index}
+                animation="slide-right"
+                delay={index * 150}
+                duration={600}
+              >
+                <Card className="group hover:shadow-tech transition-all duration-500 hover:-translate-y-1 border-0 shadow-card">
+                  <CardContent className="p-8">
+                    <div className="flex items-start space-x-6">
+                      <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-500 flex-shrink-0">
+                        <highlight.icon size={32} className="text-primary group-hover:text-primary-foreground transition-colors duration-500" />
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300">
+                          {highlight.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {highlight.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <AnimatedSection animation="fade-up" delay={200} className="mt-16">
+          <div className="text-center p-8 bg-background rounded-2xl shadow-card">
+            <h3 className="text-2xl font-bold mb-4">
+              Pronto para transformar sua infraestrutura?
+            </h3>
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Entre em contato conosco e descubra como nossas soluções podem 
+              impulsionar a produtividade e segurança da sua empresa.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 onClick={() => {
                   const element = document.getElementById('contact');
@@ -68,76 +139,24 @@ const Differentials = () => {
                     element.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="gradient-primary text-white px-8 py-4 rounded-lg font-semibold shadow-button hover:opacity-90 transition-opacity"
+                className="gradient-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold shadow-button hover:opacity-90 hover:scale-105 transition-all duration-300"
               >
-                Descubra Como Podemos Ajudar
+                Solicitar Consultoria Gratuita
+              </button>
+              <button 
+                onClick={() => {
+                  const element = document.getElementById('services');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105"
+              >
+                Ver Todos os Serviços
               </button>
             </div>
           </div>
-
-          {/* Highlights Cards */}
-          <div className="space-y-6 animate-fade-in">
-            {highlights.map((highlight, index) => (
-              <Card 
-                key={index}
-                className="group hover:shadow-tech transition-all duration-300 hover:-translate-y-1 border-0 shadow-card"
-                style={{ animationDelay: `${index * 0.1 + 0.3}s` }}
-              >
-                <CardContent className="p-8">
-                  <div className="flex items-start space-x-6">
-                    <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0">
-                      <highlight.icon size={32} className="text-primary group-hover:text-white" />
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                        {highlight.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {highlight.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-16 p-8 bg-white rounded-2xl shadow-card animate-fade-in">
-          <h3 className="text-2xl font-bold mb-4">
-            Pronto para transformar sua infraestrutura?
-          </h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Entre em contato conosco e descubra como nossas soluções podem 
-            impulsionar a produtividade e segurança da sua empresa.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => {
-                const element = document.getElementById('contact');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="gradient-primary text-white px-8 py-4 rounded-lg font-semibold shadow-button hover:opacity-90 transition-opacity"
-            >
-              Solicitar Consultoria Gratuita
-            </button>
-            <button 
-              onClick={() => {
-                const element = document.getElementById('services');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors"
-            >
-              Ver Todos os Serviços
-            </button>
-          </div>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );

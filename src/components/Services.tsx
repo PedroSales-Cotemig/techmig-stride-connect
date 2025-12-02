@@ -1,7 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Monitor, Wrench, Network, Shield } from "lucide-react";
+import AnimatedSection from "./AnimatedSection";
+import { useInView } from "@/hooks/useInView";
 
 const Services = () => {
+  const { ref: headerRef, isInView: headerInView } = useInView({ threshold: 0.2 });
+
   const services = [
     {
       icon: Monitor,
@@ -32,7 +36,12 @@ const Services = () => {
   return (
     <section id="services" className="py-20 gradient-subtle">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ease-out ${
+            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Nossos <span className="text-primary">Serviços</span>
           </h2>
@@ -44,45 +53,52 @@ const Services = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <Card 
-              key={index} 
-              className="group hover:shadow-tech transition-all duration-300 hover:-translate-y-2 border-0 shadow-card animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+            <AnimatedSection
+              key={index}
+              animation="fade-up"
+              delay={index * 100}
+              duration={600}
             >
-              <CardContent className="p-8">
-                <div className="text-center space-y-6">
-                  {/* Icon */}
-                  <div className="w-16 h-16 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                    <service.icon size={32} className="text-primary group-hover:text-white" />
-                  </div>
+              <Card className="group h-full hover:shadow-tech transition-all duration-500 hover:-translate-y-3 border-0 shadow-card">
+                <CardContent className="p-8">
+                  <div className="text-center space-y-6">
+                    {/* Icon */}
+                    <div className="w-16 h-16 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-500">
+                      <service.icon size={32} className="text-primary group-hover:text-primary-foreground transition-colors duration-500" />
+                    </div>
 
-                  {/* Content */}
-                  <div>
-                    <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
+                    {/* Content */}
+                    <div>
+                      <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-4 leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
 
-                  {/* Features */}
-                  <div className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center text-sm text-muted-foreground">
-                        <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                        {feature}
-                      </div>
-                    ))}
+                    {/* Features */}
+                    <div className="space-y-2">
+                      {service.features.map((feature, featureIndex) => (
+                        <div 
+                          key={featureIndex} 
+                          className="flex items-center text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300"
+                          style={{ transitionDelay: `${featureIndex * 50}ms` }}
+                        >
+                          <div className="w-2 h-2 bg-primary rounded-full mr-3 group-hover:scale-125 transition-transform duration-300"></div>
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
           ))}
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16 animate-fade-in">
+        <AnimatedSection animation="fade-up" delay={400} className="text-center mt-16">
           <p className="text-lg text-muted-foreground mb-6">
             Precisa de uma solução personalizada? Entre em contato conosco.
           </p>
@@ -93,11 +109,12 @@ const Services = () => {
                 element.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="gradient-primary text-white px-8 py-4 rounded-lg font-semibold shadow-button hover:opacity-90 transition-opacity"
+            className="gradient-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold shadow-button hover:opacity-90 hover:scale-105 transition-all duration-300 relative overflow-hidden group"
           >
-            Falar com Especialista
+            <span className="relative z-10">Falar com Especialista</span>
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           </button>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );
