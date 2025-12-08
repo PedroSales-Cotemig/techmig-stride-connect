@@ -32,16 +32,15 @@ const Hero = () => {
                 isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-16'
               }`}
             >
-              Transformamos sua{" "}
               <span className="text-primary relative inline-block">
-                infraestrutura
+                Techmig
                 <span className={`absolute -bottom-2 left-0 h-1 bg-primary/30 rounded-full transition-all duration-1000 delay-500 ${
                   isLoaded ? 'w-full' : 'w-0'
                 }`} />
               </span>{" "}
-              em um motor de{" "}
+              soluções de redes e{" "}
               <span className="text-primary relative inline-block">
-                produtividade
+                conectividade
                 <span className={`absolute -bottom-2 left-0 h-1 bg-primary/30 rounded-full transition-all duration-1000 delay-700 ${
                   isLoaded ? 'w-full' : 'w-0'
                 }`} />
