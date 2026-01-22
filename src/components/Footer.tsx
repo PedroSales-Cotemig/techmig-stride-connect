@@ -25,6 +25,9 @@ const Footer = () => {
             <img 
               src="/lovable-uploads/977ca011-a060-447d-a52b-594a19290765.png" 
               alt="TECHMIG" 
+              width={238}
+              height={48}
+              loading="lazy"
               className="h-12 w-auto mb-4"
             />
             <p className="text-background/80 mb-6 leading-relaxed max-w-md">
