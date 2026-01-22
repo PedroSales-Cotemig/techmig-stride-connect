@@ -117,6 +117,9 @@ const Hero = () => {
         <img 
           src={heroImage} 
           alt="Workspace tecnológico moderno da Techmig"
+          width={1024}
+          height={640}
+          fetchPriority="high"
           className="mx-auto rounded-2xl object-cover h-full w-full object-left-top"
           draggable={false}
         />
