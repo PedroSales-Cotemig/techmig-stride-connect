@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import heroImage from "@/assets/hero-tech-workspace.jpg";
+import heroImage from "@/assets/hero-tech-workspace.webp";
 import { useCountUp } from "@/hooks/useCountUp";
 
 const Hero = () => {
